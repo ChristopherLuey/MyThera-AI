@@ -11,6 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginBottom="25dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/button"
         android:elevation="10dp"

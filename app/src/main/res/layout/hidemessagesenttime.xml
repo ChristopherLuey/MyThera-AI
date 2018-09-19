@@ -10,6 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button"
         android:elevation="10dp"
