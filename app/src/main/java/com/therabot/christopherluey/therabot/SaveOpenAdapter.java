@@ -3,7 +3,6 @@ package com.therabot.christopherluey.therabot;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,23 +21,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static android.util.Log.d;
-
 /**
  * Created by christopherluey on 9/18/18.
+ * RecyclerView Adapter for Save Open class
  */
 
-public class SaveOpenAdapter extends RecyclerView.Adapter{
+public class SaveOpenAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
     private ArrayList<SaveOpenTypes> mData;
-    int total_types;
     Context context;
+    int total_types;
 
     static String filename = "TheraBot " + TimeDate.getCreatedAt();
     static String namefile;
     String[] dislist;
     ArrayAdapter adapter;
-    
+    File filepath;
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -61,8 +59,10 @@ public class SaveOpenAdapter extends RecyclerView.Adapter{
         if (object != null) {
             switch (object.type) {
                 case SaveOpenTypes.SAVE:
+
                     final File path = context.getExternalFilesDir(null);
                     ((Save) holder).name.setHint(filename);
+
                     ((Save) holder).name.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -88,9 +88,10 @@ public class SaveOpenAdapter extends RecyclerView.Adapter{
                             }
 
                             File file = new File(path, filename + ".txt");
+                            filepath = new File(file.getPath());
 
                             try{
-                                ReadWrite.write(file);
+                                ReadWrite.write(file, context);
                                 Toast.makeText(context, "Saved to files!", Toast.LENGTH_SHORT).show();
                             } catch (Exception e){
                                 Toast.makeText(context, "Failed to save to files.", Toast.LENGTH_SHORT).show();
@@ -104,7 +105,6 @@ public class SaveOpenAdapter extends RecyclerView.Adapter{
                     if (dislist.length < 0){
                         dislist[0] = "No Available Files to Open. Please Save a File Before Opening";
                     }
-                    Log.d("dislist", String.valueOf(dislist.length));
                     adapter = new ArrayAdapter<String>(context, R.layout.activity_open_list_view, R.id.textView9, dislist);
                     ((Open) holder).fileList.setAdapter(adapter);
                     ((Open) holder).refresh.setOnClickListener(new View.OnClickListener() {
@@ -119,26 +119,47 @@ public class SaveOpenAdapter extends RecyclerView.Adapter{
                         }
                     });
 
-                    ((Open) holder).fileList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+                    ((Open) holder).fileList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
-                        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3){
-                            ((Open) holder).fileList.getSelectedItem();
-                            Log.d("filelist", String.valueOf(((Open) holder).fileList.getSelectedItem()));
-                            //((Open) holder).fileList.getItemAtPosition(position);
-                            //String read = ReadWrite.read(file);
-                            //read.replaceAll("[|]", "");
-                            //showtext.setText(read);
-                            //List<String> readlist = new ArrayList<>(Arrays.asList(read.split(",")));
-                            //MainActivity.listMessage = readlist;
-                            d("listmessage", String.valueOf(MainActivity.listMessage));
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            String filepathstring = String.valueOf(context.getExternalFilesDir(null)) + "/" +
+                                    String.valueOf(((Open) holder).fileList.getItemAtPosition(position));
+
+                            File file = new File(filepathstring);
+
+                            String read = ReadWrite.read(file, context);
+                            read.replaceAll("[|]", "");
+                            List<String> readlist;
+                            try {
+                                readlist = new ArrayList<>(Arrays.asList(read.split("#")));
+                            } catch (Exception e){
+                                readlist = new ArrayList<>();
+                            }
+                            if (MainActivity.listMessage != null) {
+                                MainActivity.listMessage.clear();
+                                MainActivity.mMessageRecycler.removeAllViewsInLayout();
+                            }
+                            if(readlist.size() != 1) {
+                                if(readlist.size() != 0) {
+                                    for (int i = 1; i <= readlist.size(); i++) {
+                                        MainActivity.listMessage.add(readlist.get(i-1));
+                                        MainActivity.mMessageAdapter.notifyDataSetChanged();
+                                    }
+                                }
+                            } else {
+                                MainActivity.listMessage.add(readlist.get(0));
+                                MainActivity.mMessageAdapter.notifyDataSetChanged();
+                            }
+
+                            for (int i =0; i<=MainActivity.listMessage.size(); i++) {
+                                MainActivity.mMessageAdapter.notifyItemChanged(i);
+                            }
+
                         }
+                    });
+                    break;
 
-                        @Override
-                        public void onNothingSelected(AdapterView<?> arg0) {
-                            Log.d("nothing", "onNothingSelected: ");
-                }
-            });
             }
         }
     }
@@ -158,6 +179,11 @@ public class SaveOpenAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     public static class Save extends RecyclerView.ViewHolder{

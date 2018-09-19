@@ -1,4 +1,4 @@
-package com.example.christopherluey.myapplication;
+package com.therabot.christopherluey.therabot;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

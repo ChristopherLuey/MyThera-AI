@@ -5,7 +5,8 @@
     android:id="@+id/con"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.therabot.christopherluey.therabot.openListView">
+    tools:context="com.therabot.christopherluey.therabot.openListView"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:id="@+id/textView9"
@@ -22,5 +23,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/con"
         app:layout_constraintEnd_toEndOf="@+id/con"
         app:layout_constraintStart_toStartOf="@+id/con"
-        app:layout_constraintTop_toTopOf="@+id/con" />
+        app:layout_constraintTop_toTopOf="@+id/con"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.therabot.christopherluey.therabot;
 
 /**
  * Created by christopherluey on 9/18/18.
+ * Types of views for Save Open RecyclerView Adapter
  */
 
 public class SaveOpenTypes {

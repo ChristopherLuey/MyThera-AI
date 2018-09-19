@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class openListView extends AppCompatActivity {
+    //Class with TextView for the ListView in the SaveOpenMenu class
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

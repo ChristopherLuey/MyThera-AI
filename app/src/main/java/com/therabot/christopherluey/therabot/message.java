@@ -2,6 +2,7 @@ package com.therabot.christopherluey.therabot;
 
 /**
  * Created by christopherluey on 9/18/18.
+ * Works with the IBM Watson API in order to receive data more easily
  */
 
 import java.io.Serializable;

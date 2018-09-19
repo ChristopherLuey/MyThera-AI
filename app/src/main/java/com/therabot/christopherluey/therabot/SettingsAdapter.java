@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 /**
  * Created by christopherluey on 9/16/18.
+ * Settings page RecyclerView Adapter
  */
 
 public class SettingsAdapter extends RecyclerView.Adapter {
