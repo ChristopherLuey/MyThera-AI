@@ -154,6 +154,8 @@ public class SaveOpenAdapter extends RecyclerView.Adapter implements View.OnClic
 
                             for (int i =0; i<=MainActivity.listMessage.size(); i++) {
                                 MainActivity.mMessageAdapter.notifyItemChanged(i);
+                                Toast toast = Toast.makeText(context, "Successfully Opened!", Toast.LENGTH_SHORT);
+                                toast.show();
                             }
 
                         }
