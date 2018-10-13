@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TheraBot</string>
+    <string name="app_name">MyThera</string>
     <string name="username">446b1b90-45ba-49ad-9067-566a5e1c7ad4</string>
     <string name="password">BWM13pe8DJgk</string>
     <string name="workspace">1e80aba9-9949-480c-9929-66a6c9b5e278</string>
@@ -8,7 +8,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="chat_intro">1 Welcome! I\'m your personal therapy chatbot, "TheraBot. How are you feeling today? If you have any questions, just ask them.</string>
+    <string name="chat_intro">1 Welcome! I\'m your personal therapy chatbot, MyThera. How are you feeling today? If you have any questions, just ask them.</string>
 
     <!-- Strings related to Settings -->
 

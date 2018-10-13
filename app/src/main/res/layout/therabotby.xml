@@ -12,7 +12,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif-condensed"
-        android:text="TheraBot - Created By: Christopher Luey"
+        android:text="MyThera - Created By: Christopher Luey"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

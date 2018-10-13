@@ -12,33 +12,49 @@
 
     <TextView
         android:id="@+id/text_message_body"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rectangle_chat_sent"
         android:elevation="5dp"
-        android:maxWidth="265dip"
         android:padding="8dp"
         android:text="hello, hello!"
         android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/con"
-        app:layout_constraintRight_toRightOf="@+id/con"
-        app:layout_constraintTop_toTopOf="@+id/con" />
+        app:layout_constraintEnd_toEndOf="@+id/con"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/con"
+        app:layout_constrainedWidth="true"/>
 
     <TextView
         android:id="@+id/text_message_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginRight="4dp"
-        android:maxWidth="140dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
         android:text="11:40"
         android:textAlignment="viewEnd"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_message_body"
-        app:layout_constraintRight_toLeftOf="@+id/text_message_body" />
+        app:layout_constraintBottom_toBottomOf="@+id/con"
+        app:layout_constraintEnd_toStartOf="@+id/barrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/con" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".25" />
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="text_message_body" />
 
 </android.support.constraint.ConstraintLayout>

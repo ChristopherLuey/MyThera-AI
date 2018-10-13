@@ -145,7 +145,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             // Format the stored timestamp into a readable String using method.
             timeText.setText(String.valueOf(TimeDate.getCreatedAt()));
 
-            nameText.setText("TheraBot");
+            nameText.setText("MyThera");
 
         }
     }

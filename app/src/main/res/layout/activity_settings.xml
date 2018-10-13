@@ -15,7 +15,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:minHeight="60dp"
         android:paddingTop="12dp"
-        android:text="TheraBot Settings"
+        android:text="MyThera Settings"
         android:textAlignment="center"
         android:textColor="@color/TextLogo"
         android:textSize="30sp"
